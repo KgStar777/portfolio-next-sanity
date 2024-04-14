@@ -27,7 +27,7 @@ interface Data {
   // }>,
 }
 
-export async function asyncFunc(projectId: string) {
+async function asyncFunc(projectId: string) {
   const query = `*[_type == "gallery" && name == "${projectId}"] {
     title,
     overview,

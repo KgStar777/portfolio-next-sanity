@@ -43,7 +43,7 @@ const links = [
 ];
 
 export default function Navbar() {
-  const { language } = useContext(LanguageContext);
+  // const { language } = useContext(LanguageContext);
   let pathname = usePathname() || "/";
   return (
     <Disclosure as="nav">
@@ -72,7 +72,8 @@ export default function Navbar() {
                           ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                           : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                       }`}
-                    >{language[0] ? link.titleEng : link.titleRu}</Link>
+                      // >{language[0] ? link.titleEng : link.titleRu}</Link>
+                    >{link.titleEng}</Link>
                   ))}
                   {/* <LangSelect /> */}
                   <Themebutton />
@@ -106,7 +107,8 @@ export default function Navbar() {
                       ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
                       : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
                   } `}
-                >{language[0] ? link.titleEng : link.titleRu}</Link>
+                // >{language[0] ? link.titleEng : link.titleRu}</Link>
+                >{link.titleEng}</Link>
               ))}
               <LangSelect />
             </div>

@@ -14,7 +14,7 @@ interface LanguageContextModel {
   setLanguage: Dispatch<SetStateAction<any>>;
 }
 
-export const LanguageContext = createContext<LanguageContextModel>(null);
+export const LanguageContext = createContext<LanguageContextModel | null>(null);
 
 export const LanguageContextProvider = ({
   children
