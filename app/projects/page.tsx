@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { client } from "../lib/sanity";
+import Link from "next/link";
 
 interface Data {
   title: string;
@@ -7,15 +8,18 @@ interface Data {
   link: string;
   _id: string;
   imageUrl: string;
+  name: string;
 }
 
 async function getProjects() {
-  const query = `*[_type == "project"] {
+  // const query = `*[_type == "project"] {
+  const query = `*[_type == "gallery"] {
     title,
-      overview,
-      link,
-      _id,
-      "imageUrl": image.asset->url
+    overview,
+    link,
+    _id,
+    name,
+    "imageUrl": gallery.images[0].asset->url,
   }`;
 
   const data = await client.fetch(query);
@@ -28,6 +32,7 @@ export const revalidate = 60;
 export default async function Projects() {
   const data: Data[] = await getProjects();
 
+  console.log("data", data)
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">
@@ -40,7 +45,7 @@ export default async function Projects() {
         {data.map((project) => (
           <article
             key={project._id}
-            className="overflow-hidden dark:border-zinc-600 rounded-lg border border-gray-100 bg-white shadow-lg dark:bg-black dark:shadow-gray-700 shadow-teal-100"
+            className="overflow-hidden dark:border-zinc-600 rounded-lg border border-gray-100 bg-white shadow-lg dark:bg-black dark:border-teal-900"
           >
             <div className="h-56 w-full relative">
               <Image
@@ -62,7 +67,7 @@ export default async function Projects() {
                 {project.overview}
               </p>
 
-              <a
+              {/* <a
                 href={project.link}
                 target="_blank"
                 className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-500"
@@ -71,7 +76,17 @@ export default async function Projects() {
                 <span className="block transition-all group-hover:ms-0.5">
                   &rarr;
                 </span>
-              </a>
+              </a> */}
+              
+              <Link
+                href={`/projects/${project.name}`}
+                prefetch
+                className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-500"
+              >Learn More!
+                <span className="block transition-all group-hover:ms-0.5">
+                  &rarr;
+                </span>
+              </Link>
             </div>
           </article>
         ))}

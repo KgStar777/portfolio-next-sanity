@@ -23,5 +23,10 @@ export default {
       type: 'string',
       title: 'Link',
     },
+    {
+      name: "name",
+      type: "string",
+      title: "Name"
+    }
   ],
 }
