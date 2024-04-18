@@ -90,21 +90,20 @@ export default async function Home() {
 
         <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
           <p>
-            Hey everyone my name is Daniil, I am 28 years old and i am a Full Stack
-            developer based in Moscow/Russia
+            Hey everyone my name is Daniil, I am experienced Frontend/Full-stack developer with a proven 
+            track record of designing and implementing robust web applications. 
+            Proficient in both frontend and backend technologies, adept at problem-solving, 
+            and committed to delivering high-quality code. Skilled in Agile methodologies and 
+            collaborative teamwork.
           </p>
           <p>
-            I love building Full Stack applications with React and to share them
-            on YouTube. When I discovered React, I was blown away by its
-            interactivity and speed. Its virtual DOM and efficient rendering
-            mechanisms allowed me to create dynamic user interfaces that
-            responded to user actions in real-time.
+            Implemented RESTful APIs with Node.js and Express.js.
+            As a Frontend developer, I developed user-friendly interfaces using React/Next, reducing page load time.
+            Used state managers such as mobx, redux-toolkit, zustand. I’m also already familiar with many popular libraries, so their appearance on any project can only make me happy.
           </p>
           <p>
-            Building applications with Reactand sharing them on YouTube is my
-            ultimate combination of creative expression, technical expertise,
-            and community engagement. I am thrilled to continue this journey,
-            honing my skills, and inspiring others in the process.
+            Here you can get acquainted with some of the projects in which I took part, including the pet projects with which my journey began.
+            I will be glad to interest you.
           </p>
         </div>
       </div>
