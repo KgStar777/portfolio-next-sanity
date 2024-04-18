@@ -28,6 +28,7 @@ interface Data {
 }
 
 async function asyncFunc(projectId: string) {
+  console.log("projectId: ", projectId);
   const query = `*[_type == "gallery" && name == "${projectId}"] {
     title,
     overview,
@@ -70,8 +71,15 @@ export default async function Gallery(
       <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
         <p>{data[0].overview}</p>
         <div>
-          <span>link to site: </span>
-          <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
+          {
+            data[0]?.link !== null && (
+              <Fragment>
+                <span>link to site: </span>
+                <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
+              </Fragment>
+            )
+          }
+          
         </div>
       </div>
     </Fragment>

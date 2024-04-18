@@ -32,7 +32,6 @@ export const revalidate = 60;
 export default async function Projects() {
   const data: Data[] = await getProjects();
 
-  console.log("data", data)
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">
