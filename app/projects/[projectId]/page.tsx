@@ -9,6 +9,7 @@ interface Data {
   title: string;
   overview: string;
   link: string;
+  github: string;
   _id: string;
   name: string;
   imageUrl: string[];
@@ -28,11 +29,11 @@ interface Data {
 }
 
 async function asyncFunc(projectId: string) {
-  console.log("projectId: ", projectId);
   const query = `*[_type == "gallery" && name == "${projectId}"] {
     title,
     overview,
     link,
+    github,
     _id,
     name,
     "imageUrl": gallery.images[].asset->url,
@@ -72,10 +73,18 @@ export default async function Gallery(
         <p>{data[0].overview}</p>
         <div>
           {
-            data[0]?.link !== null && (
+            data[0]?.link !== null && !/^uv/.test(data[0]?.link) && (
               <Fragment>
                 <span>link to site: </span>
                 <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
+              </Fragment>
+            )
+          }
+          {
+            data[0]?.github !== null && (
+              <Fragment>
+                <span>link to github: </span>
+                <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].github}>{data[0].github}</a>
               </Fragment>
             )
           }

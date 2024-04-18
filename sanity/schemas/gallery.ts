@@ -19,9 +19,9 @@ export default {
       title: 'Link',
     },
     {
-      name: 'githab',
+      name: 'github',
       type: 'string',
-      title: 'Githab',
+      title: 'Github',
     },
     {
       name: "name",
