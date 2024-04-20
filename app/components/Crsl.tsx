@@ -41,7 +41,7 @@ export const Crsl = ({
       transitionDuration={500}
     >
       {
-        images.map((item, idx) => (
+        images?.length > 0 && images.map((item, idx) => (
             <article
               key={idx}
               className="overflow-hidden dark:border-zinc-600 rounded-lg border border-gray-100 bg-white shadow-lg dark:bg-black dark:border-teal-900 mx-1"

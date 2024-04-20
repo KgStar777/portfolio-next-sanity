@@ -31,11 +31,11 @@ const links = [
     titleRu: "Обо мне",
     to: "/",
   },
-  {
-    titleEng: "Projects",
-    titleRu: "Проекты",
-    to: "/projects",
-  },
+  // {
+  //   titleEng: "Projects",
+  //   titleRu: "Проекты",
+  //   to: "/projects",
+  // },
 ];
 
 export default function Navbar() {

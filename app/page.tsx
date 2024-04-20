@@ -99,7 +99,7 @@ export default async function Home() {
           <p>
             Implemented RESTful APIs with Node.js and Express.js.
             As a Frontend developer, I developed user-friendly interfaces using React/Next, reducing page load time.
-            Used state managers such as mobx, redux-toolkit, zustand. I’m also already familiar with many popular libraries, so their appearance on any project can only make me happy.
+            Used state managers such as mobx, redux-toolkit, zustand. I’m also already familiar with many popular libraries.
           </p>
           <p>
             Here you can get acquainted with some of the projects in which I took part, including the pet projects with which my journey began.
