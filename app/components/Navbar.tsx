@@ -3,10 +3,12 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useParams } from 'next/navigation';
+import { useCallback } from "react";
+
 import Themebutton from "./Themebutton";
-import LangSelect from "./LangSelect";
-import { useContext } from "react";
-import { LanguageContext } from "../context/LangContext";
+import { useLanguage } from "../context/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const getIcon = (open: boolean) => (
   <svg
@@ -27,9 +29,9 @@ const getIcon = (open: boolean) => (
 
 const links = [
   {
-    titleEng: "About me",
-    titleRu: "Обо мне",
-    to: "/",
+    titleEng: "Home",
+    titleRu: "Главная",
+    to: "",
   },
   // {
   //   titleEng: "Projects",
@@ -39,8 +41,36 @@ const links = [
 ];
 
 export default function Navbar() {
-  // const { language } = useContext(LanguageContext);
-  let pathname = usePathname() || "/";
+  const { language, languageLC } = useLanguage();
+  const { lang } = useParams();
+  let pathname = usePathname() || `${languageLC}`;
+
+  const getLinkPath = useCallback((path: string) => {
+    return `/${languageLC}${path}`;
+  }, [languageLC]);
+
+  const headerTitle = (lang: string) => {
+    const title: [string, string] =  lang === "ru"
+      ? ["Даниил", "Сычёв"]
+      : ["Daniil", "Sychev"];
+
+    const getHeaderTitle = ([fName, sName]: [string, string], lang: string) => {
+      return (
+        <h1 className="text-2xl font-medium">
+          <span className="text-white dark:text-black bg-teal-500 p-1 border-teal-500 font-bold me-2">
+            {String(lang === "ru"
+              ? "портфолио"
+              : "portfolio"
+            ).toUpperCase()}
+            </span>
+          {fName} <span className="text-teal-500">{sName}</span>
+        </h1>
+      )
+    }
+
+    return getHeaderTitle(title, lang)
+  }
+  
   return (
     <Disclosure as="nav">
       {({ open }) => (
@@ -50,10 +80,7 @@ export default function Navbar() {
               <div className="flex justify-between w-full">
                 <div className="flex items-center">
                   <Link href="/">
-                    <h1 className="text-2xl font-medium">
-                      <span className="text-white dark:text-black bg-teal-500 p-1 border-teal-500 font-bold me-2">{String("portfolio").toUpperCase()}</span>
-                      Daniil <span className="text-teal-500">Sychev</span>
-                    </h1>
+                    {headerTitle(lang as string)}
                   </Link>
                 </div>
 
@@ -61,24 +88,23 @@ export default function Navbar() {
                   {links.map((link, idx) => (
                     <Link
                       key={idx}
-                      href={link.to}
+                      href={getLinkPath(link.to)}
                       prefetch
                       className={`${
-                        pathname === link.to
+                        pathname === getLinkPath(link.to)
                           ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                           : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                       }`}
-                      // >{language[0] ? link.titleEng : link.titleRu}</Link>
-                    >{link.titleEng}</Link>
+                    >{language === "RU" ?  link.titleRu : link.titleEng}</Link>
                   ))}
-                  {/* <LangSelect /> */}
                   <Themebutton />
+                  <LanguageSwitcher />
                 </div>
               </div>
 
               <div className="-mr-2 flex items-center sm:hidden">
                 <Themebutton />
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 dark:hover:bg-gray-800">
+                <Disclosure.Button className="ms-3 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 dark:hover:bg-gray-800">
                   {getIcon(open)}
                 </Disclosure.Button>
               </div>
@@ -86,7 +112,7 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="pt-2 pb-3 space-y-1">
+            <div className="pt-2 pb-3 space-y-1 flex-col items-center">
               {/* <Link
                 href="/"
                 prefetch
@@ -96,17 +122,18 @@ export default function Navbar() {
               {links.map((link, idx) => (
                 <Link
                   key={idx}
-                  href={link.to}
+                  href={getLinkPath(link.to)}
                   prefetch
                   className={`${
-                    pathname === link.to
-                      ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
-                      : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                    pathname === getLinkPath(link.to)
+                      ? "text-center bg-teal-50 border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                      : "text-center border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
                   } `}
-                // >{language[0] ? link.titleEng : link.titleRu}</Link>
-                >{link.titleEng}</Link>
+                >{language === "RU" ? link.titleRu : link.titleEng}</Link>
               ))}
-              <LangSelect />
+              <div className="text-center">
+                <LanguageSwitcher />
+              </div>
             </div>
           </Disclosure.Panel>
         </>

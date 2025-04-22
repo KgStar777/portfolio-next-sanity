@@ -9,9 +9,19 @@ export default {
       title: 'Title',
     },
     {
+      name: 'titleRu',
+      type: 'string',
+      title: 'Title Ru',
+    },
+    {
       name: 'overview',
       type: 'string',
       title: 'Small Overview',
+    },
+    {
+      name: 'overviewRu',
+      type: 'string',
+      title: 'Small Overview Ru',
     },
     {
       name: 'link',

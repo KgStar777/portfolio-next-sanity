@@ -1,10 +1,16 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-import { Lang, LanguageContext, langs } from "../context/LangContext";
+import { useEffect, useState } from "react";
 
-export default function LangSelect() {
-  // const { language, setLanguage } = useContext(LanguageContext);
+export type DropDownValue = number | string;
+
+interface IDropDownProps<T extends DropDownValue> {
+  initValue: string;
+  data: T[];
+  onValueChanged: (value: T) => void;
+}
+
+export default function Dropdown<T>(props: IDropDownProps<DropDownValue>) {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,9 +35,9 @@ export default function LangSelect() {
             aria-expanded="true"
             aria-haspopup="true"
           >
-            {/* {language} */}
+            {props.initValue}
             <svg className="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
             </svg>
           </button>
 
@@ -45,13 +51,11 @@ export default function LangSelect() {
               // tabindex="-1"
             >
               <div className="py-1" role="none">
-                {/* {
-                  langs.map((lang) => (
-                    <a
-                      key={lang}
+                {
+                  props.data.map((lang) => (
+                    <a key={lang}
                       onClick={() => {
-                        setLanguage(lang)
-                      // setLang(lang);
+                        props.onValueChanged(lang)
                       setIsOpen(false);
                     }}
                     href="#"
@@ -59,7 +63,7 @@ export default function LangSelect() {
                     // tabindex="-1"
                     id="menu-item-0">{lang}</a>
                   ))
-                } */}
+                }
               </div>
             </div>
           )

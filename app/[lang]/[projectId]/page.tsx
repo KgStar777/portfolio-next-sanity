@@ -1,32 +1,11 @@
 import { Suspense, Fragment } from "react";
 
+import { BackButton } from "@/app/components/BackButton";
+import { client } from "@/app/lib/sanity";
 import { Crsl } from '@/app/components/Crsl';
-
-import { client } from "../../lib/sanity";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import type { ProjectDataWuithGallery } from "@/app/models/ProjectData";
 
-interface Data {
-  title: string;
-  overview: string;
-  link: string;
-  github: string;
-  _id: string;
-  name: string;
-  imageUrl: string[];
-  gallery: {
-    images: Array<{
-      _type: string
-      _key: string
-      asset: {
-        url: string
-      },
-    }>,
-  }
-  // images: Array<{
-  //   _type: string
-  //   _key: string
-  // }>,
-}
 
 async function asyncFunc(projectId: string) {
   const query = `*[_type == "gallery" && name == "${projectId}"] {
@@ -47,35 +26,38 @@ async function asyncFunc(projectId: string) {
 export const revalidate = 60;
 
 export default async function Gallery(
-  { params: { projectId }
+  { params: { projectId, lang }
 }: {
-  params: { projectId: string }
+  params: { projectId: string, lang: string }
 }) {
-    const data: Data[] = await asyncFunc(projectId);
+  const data: ProjectDataWuithGallery[] = await asyncFunc(projectId);
 
   return (
     <Fragment>
       <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
-        <div className="flex flex-col items-end pt-8">
-          <h3 className="pt-4 pb-8 text-4xl font-large leading-8 tracking-tight ml-2 font-semibold">
-            {data[0].title}
+        <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
+          <BackButton />
+          <h3 className="self-end justify-self-end text-4xl font-large leading-8 tracking-tight ml-2 font-semibold">
+            {lang === "ru" ? data[0].titleRu : data[0].title}
           </h3>
         </div>
       </div>
 
-      <Suspense fallback={<>Loading...</>}>
+      <Suspense fallback={lang === "ru"
+        ? <>Загрузка...</>
+        : <>Loading...</>}>
         <div className="h-84 rounded-md overflow-hidden bg-cover bg-center">
           <Crsl images={data[0].imageUrl} />
         </div>
       </Suspense>
 
       <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
-        <p>{data[0].overview}</p>
+        <p>{lang === "ru" ? data[0].overviewRu : data[0].overview}</p>
         <div>
           {
             data[0]?.link !== null && !/^uv/.test(data[0]?.link) && (
               <Fragment>
-                <span>link to site: </span>
+                <span>{lang === "ru" ? "ссылка на сайт: " : "link to site: "}</span>
                 <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
               </Fragment>
             )
@@ -83,7 +65,7 @@ export default async function Gallery(
           {
             data[0]?.github !== null && (
               <Fragment>
-                <span>link to github: </span>
+                <span>{`${lang === "ru" ? "ссылка на" : "link to"} github: `}</span>
                 <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].github}>{data[0].github}</a>
               </Fragment>
             )

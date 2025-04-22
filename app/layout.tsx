@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Navbar from "./components/Navbar";
-import { Progress } from "./components/Progress";
-import { ThemeContextProvider } from "./context/ThemeContext";
-import { LanguageContextProvider } from "./context/LangContext";
-
 import "./globals.css";
+
+export type LanguageType = "RU" | "EN";
+export const availableLanguages: LanguageType[] = ["RU", "EN"];
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,19 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={"en"} suppressHydrationWarning>
       <body
         className={`${inter.className} bg-white text-black dark:bg-[#090908] dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800`}
       >
-        <Progress />
-        <LanguageContextProvider>
-          <ThemeContextProvider>
-            <Navbar />
-            <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              {children}
-            </main>
-          </ThemeContextProvider>
-        </LanguageContextProvider>
+        {children}
       </body>
     </html>
   );
