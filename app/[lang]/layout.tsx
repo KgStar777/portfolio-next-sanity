@@ -1,9 +1,9 @@
-import { LanguageContextProvider } from "../context/LanguageContext";
-import { ThemeContextProvider } from "../context/ThemeContext";
-import Navbar from "../components/Navbar";
-import { LanguageType } from "../layout";
-import { FloatingContact } from "../components/FloatingContact";
-import { AnimatedWrapper } from "../components/AnimatedWrapper";
+import type { LanguageType } from "@/models/LanguageType";
+import Navbar from "@/components/Navbar";
+import { LanguageContextProvider } from "@/context/LanguageContext";
+import { ThemeContextProvider } from "@/context/ThemeContext";
+import { FloatingContact } from "@/components/FloatingContact";
+import { AnimatedWrapper } from "@/components/AnimatedWrapper";
 
 export default function Layout({
   children,

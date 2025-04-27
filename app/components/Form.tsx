@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { postEntry } from "../action";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { postEntry } from "@/app/action";
 
 export default function Form() {
   const formRef = useRef<HTMLFormElement>(null);

@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { getProprityLanguages } from "../utils/getProprityLanguages";
+import { getProprityLanguages } from "@/utils/getProprityLanguages";
 
 export const isMobile = (userAgent: string): boolean => {
     return /android.+mobile|ip(hone|[oa]d)/i.test(userAgent);
