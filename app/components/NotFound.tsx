@@ -1,4 +1,4 @@
-export function NotFoundPage({ lang }: {
+export default function NotFound({ lang }: {
     lang?: string
   }) {
     return (
