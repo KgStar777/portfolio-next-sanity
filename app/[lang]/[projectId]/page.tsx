@@ -31,13 +31,24 @@ export default async function Gallery(
 }) {
   const data: ProjectDataWithGallery[] = await asyncFunc(projectId);
 
-  return (
+  return !data?.[0]
+  ? (
+    <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
+      <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
+        <BackButton />
+        <h3 className="self-center text-4xl font-large leading-8 tracking-tight mt-10 font-semibold">
+          {lang === "ru" ? "Такого проекта нет" : "There is no such project"}
+        </h3>
+      </div>
+    </div>
+  )
+  : (
     <Fragment>
       <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
         <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
           <BackButton />
           <h3 className="self-end justify-self-end text-4xl font-large leading-8 tracking-tight ml-2 font-semibold">
-            {lang === "ru" ? data[0].titleRu : data[0].title}
+            {lang === "ru" ? data?.[0].titleRu : data?.[0].title}
           </h3>
         </div>
       </div>
@@ -46,15 +57,15 @@ export default async function Gallery(
         ? <>Загрузка...</>
         : <>Loading...</>}>
         <div className="h-84 rounded-md overflow-hidden bg-cover bg-center">
-          <Crsl images={data[0].imageUrl} />
+          <Crsl images={data?.[0].imageUrl} />
         </div>
       </Suspense>
 
       <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
-        <p>{lang === "ru" ? data[0].overviewRu : data[0].overview}</p>
+        <p>{lang === "ru" ? data?.[0].overviewRu : data?.[0].overview}</p>
         <div>
           {
-            data[0]?.link !== null && !/^uv/.test(data[0]?.link) && (
+            data?.[0]?.link !== null && !/^uv/.test(data?.[0]?.link) && (
               <Fragment>
                 <span>{lang === "ru" ? "ссылка на сайт: " : "link to site: "}</span>
                 <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
@@ -62,7 +73,7 @@ export default async function Gallery(
             )
           }
           {
-            data[0]?.github !== null && (
+            data?.[0]?.github !== null && (
               <Fragment>
                 <span>{`${lang === "ru" ? "ссылка на" : "link to"} github: `}</span>
                 <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].github}>{data[0].github}</a>
