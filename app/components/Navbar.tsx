@@ -57,12 +57,12 @@ export default function Navbar() {
     const getHeaderTitle = ([fName, sName]: [string, string], lang: string) => {
       return (
         <h1 className="text-2xl font-medium">
-          <span className="text-white dark:text-black bg-teal-500 p-1 border-teal-500 font-bold me-2">
+          {/* <span className="text-white dark:text-black bg-teal-500 p-1 border-teal-500 font-bold me-2 hidden md:inline-block">
             {String(lang === "ru"
               ? "портфолио"
               : "portfolio"
             ).toUpperCase()}
-            </span>
+            </span> */}
           {fName} <span className="text-teal-500">{sName}</span>
         </h1>
       )

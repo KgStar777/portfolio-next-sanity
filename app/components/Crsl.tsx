@@ -4,7 +4,6 @@ import React from 'react';
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import "react-multi-carousel/lib/styles.css";
 
 const responsive = {

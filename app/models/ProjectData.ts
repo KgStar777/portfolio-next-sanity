@@ -9,7 +9,7 @@ export interface ProjectData {
   imageUrl: string;
 }
 
-export interface ProjectDataWuithGallery extends Omit<ProjectData, "imageUrl"> {
+export interface ProjectDataWithGallery extends Omit<ProjectData, "imageUrl"> {
   imageUrl: string[];
   github: string;
   gallery: {
