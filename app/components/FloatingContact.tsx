@@ -186,7 +186,7 @@ export const FloatingContact: React.FC = () => {
               </p>
               <Link
                 href="mailto:unrivaled-candidate@proton.me"
-                className="font-normal text-xl leading-[22px] no-underline divide-gray-100 dark:divide-gray-700"
+                className="truncate font-normal text-xl leading-[22px] no-underline divide-gray-100 dark:divide-gray-700"
               >
                 unrivaled-candidate@proton.me
               </Link>
