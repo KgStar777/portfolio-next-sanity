@@ -1,7 +1,8 @@
 import { client } from "@/app/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
-import type { ProjectData } from "../models/ProjectData";
+
+import type { ProjectData } from "@/models/ProjectData";
 import { AnimatedWrapper } from "./AnimatedWrapper";
 
 async function getProjects() {

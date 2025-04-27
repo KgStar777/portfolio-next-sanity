@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Me from "@/public/grey-me.jpg";
+import ProjectList from "@/components/ProjectList";
+import { AnimatedWrapper } from "@/components/AnimatedWrapper";
+
 import { client } from "../lib/sanity";
-// import { ProjectData } from "./projects/page";
-import ProjectList from "../components/ProjectList";
-import { AnimatedWrapper } from "../components/AnimatedWrapper";
 
 async function getContacts() {
   const query = `*[_type == "contacts"] {

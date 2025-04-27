@@ -1,7 +1,7 @@
 import { usePathname, useRouter } from "next/navigation";
 
+import { useLanguage } from "@/context/LanguageContext";
 import Dropdown, { DropDownValue } from "./Dropdown";
-import { useLanguage } from "../context/LanguageContext";
 
 export default function LanguageSwitcher() {
   const router = useRouter();

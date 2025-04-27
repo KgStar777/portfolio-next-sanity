@@ -1,14 +1,14 @@
 "use client"
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
 import Me from "@/public/grey-me.jpg";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
-import { useClickOutside } from "../hooks/useClickOutside";
 
 const ANIMATION_DURATION = 0.4;
 

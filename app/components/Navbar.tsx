@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { useParams } from 'next/navigation';
 import { useCallback } from "react";
 
+import { useLanguage } from "@/context/LanguageContext";
 import Themebutton from "./Themebutton";
-import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const getIcon = (open: boolean) => (
