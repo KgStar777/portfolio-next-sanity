@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import type { LanguageType } from "@/models/LanguageType";
 import { Inter } from "next/font/google";
 
 import "./globals.css";
-
-export const availableLanguages: LanguageType[] = ["RU", "EN"];
 
 const inter = Inter({ subsets: ["latin"] });
 

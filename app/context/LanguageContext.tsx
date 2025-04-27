@@ -3,8 +3,8 @@
 import { useParams, useRouter } from 'next/navigation';
 import React, { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { availableLanguages } from '@/app/layout';
 import { LanguageType } from '@/models/LanguageType';
+import { availableLanguages } from '@/site-config';
 
 interface ILanguageContextProviderProps {
   children: ReactNode;
