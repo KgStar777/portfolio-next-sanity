@@ -1,8 +1,10 @@
 "use client";
 
-import React, { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { availableLanguages, LanguageType } from '../layout';
 import { useParams, useRouter } from 'next/navigation';
+import React, { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useMemo, useState } from 'react'
+
+import { availableLanguages } from '@/app/layout';
+import { LanguageType } from '@/models/LanguageType';
 
 interface ILanguageContextProviderProps {
   children: ReactNode;
