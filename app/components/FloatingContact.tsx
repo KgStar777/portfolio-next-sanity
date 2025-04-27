@@ -8,12 +8,15 @@ import Link from "next/link";
 
 import Me from "@/public/grey-me.jpg";
 
+import { useClickOutside } from "../hooks/useClickOutside";
+
 const ANIMATION_DURATION = 0.4;
 
 export const FloatingContact: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [disableHover, setDisableHover] = useState(false);
+  const divRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const { lang } = useParams();
 
   const handleClose = (e: React.MouseEvent) => {
@@ -54,6 +57,7 @@ export const FloatingContact: React.FC = () => {
 
   return (
     <motion.div
+      ref={divRef}
       key="contact-button"
       initial="hidden"
       animate="visible"

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { useClickOutside } from "../hooks/useClickOutside";
+
 export type DropDownValue = number | string;
 
 interface IDropDownProps<T extends DropDownValue> {
@@ -13,6 +15,7 @@ interface IDropDownProps<T extends DropDownValue> {
 export default function Dropdown<T>(props: IDropDownProps<DropDownValue>) {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const divRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
 
   useEffect(() => {
     setMounted(true);
@@ -48,6 +51,7 @@ export default function Dropdown<T>(props: IDropDownProps<DropDownValue>) {
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
+              ref={divRef}
               // tabindex="-1"
             >
               <div className="py-1" role="none">
