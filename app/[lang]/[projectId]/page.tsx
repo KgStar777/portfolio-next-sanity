@@ -3,8 +3,7 @@ import { Suspense, Fragment } from "react";
 import { BackButton } from "@/app/components/BackButton";
 import { client } from "@/app/lib/sanity";
 import { Crsl } from '@/app/components/Crsl';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
-import type { ProjectDataWuithGallery } from "@/app/models/ProjectData";
+import type { ProjectDataWithGallery } from "@/app/models/ProjectData";
 
 
 async function asyncFunc(projectId: string) {
@@ -30,7 +29,7 @@ export default async function Gallery(
 }: {
   params: { projectId: string, lang: string }
 }) {
-  const data: ProjectDataWuithGallery[] = await asyncFunc(projectId);
+  const data: ProjectDataWithGallery[] = await asyncFunc(projectId);
 
   return (
     <Fragment>

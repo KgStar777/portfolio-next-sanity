@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import Me from "@/public/grey-me.jpg";
 
-const ANIMATION_DURATION = 0.2;
+const ANIMATION_DURATION = 0.4;
 
 export const FloatingContact: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,13 +59,13 @@ export const FloatingContact: React.FC = () => {
       animate="visible"
       exit="hidden"
       variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
+        hidden: { opacity: 0, y: -12 },
+        visible: { opacity: 1, y: 0 },
       }}
-      transition={{ duration: ANIMATION_DURATION, ease: "easeInOut", delay: .4 }}
+      transition={{ duration: ANIMATION_DURATION, ease: "easeInOut", delay: .2 }}
     >
       <motion.div
-        className="fixed right-8 bottom-8 overflow-hidden flex flex-col items-start justify-start z-[1000] bg-white dark:bg-black"
+        className="fixed right-8 bottom-8 overflow-hidden flex flex-col items-start justify-start z-[1001] bg-white dark:bg-black"
         initial="circle"
         animate={isOpen ? "expanded" : "circle"}
         onMouseEnter={() => {
@@ -173,7 +173,7 @@ export const FloatingContact: React.FC = () => {
                 Phone
               </p>
               <Link
-                href="tel:+79361996669"
+                href="tel:+79164599193"
                 className="font-normal text-xl leading-[22px] no-underline divide-gray-100 dark:divide-gray-700"
               >
                 +7 916 459 91 93
@@ -185,15 +185,15 @@ export const FloatingContact: React.FC = () => {
                 Email
               </p>
               <Link
-                href="mailto:hello@amordovski.com"
+                href="mailto:unrivaled-candidate@proton.me"
                 className="font-normal text-xl leading-[22px] no-underline divide-gray-100 dark:divide-gray-700"
               >
-                .com
+                unrivaled-candidate@proton.me
               </Link>
             </div>
 
             <Link
-              href="https://t.me/"
+              href="https://t.me/dania_sych"
               className="flex items-center justify-center h-12 rounded-full font-normal text-[17px] leading-5 bg-black text-white no-underline"
               target="_blank"
             >

@@ -3,6 +3,7 @@ import Me from "@/public/grey-me.jpg";
 import { client } from "../lib/sanity";
 // import { ProjectData } from "./projects/page";
 import ProjectList from "../components/ProjectList";
+import { AnimatedWrapper } from "../components/AnimatedWrapper";
 
 async function getContacts() {
   const query = `*[_type == "contacts"] {
@@ -25,10 +26,9 @@ export default async function Home({ params }: {
   const contactsMap = new Map();
   const isEng = params.lang !== "ru"
 
-  // console.log("projects: ", projects);
   contacts.forEach((contact: {
-    name: string,
-    link: string
+    name: string;
+    link: string;
   }) => {
     contactsMap.set(contact.name, contact.link);
   });
@@ -43,12 +43,8 @@ export default async function Home({ params }: {
             className="h-48 w-48 rounded-full object-cover object-top"
           />
           <h3 className="pt-4 text-2xl font-bold leading-8 tracking-tight">
-              {isEng ? "Developer" : "Разработчик"}
-            {/* {isEng ? "Daniil Sychev" : "Даниил Сычёв"} */}
+              <AnimatedWrapper>{isEng ? "Developer" : "Разработчик"}</AnimatedWrapper>
           </h3>
-          {/* <p className="text-gray-500 dark:text-gray-300 text-center">
-            {isEng ? "Developer" : "Разработчик"}
-          </p> */}
 
           <div className="flex space-x-5 pt-4">
             <a href={contactsMap.get("github")} target="_blank" title="github">
@@ -94,7 +90,7 @@ export default async function Home({ params }: {
       <ProjectList lang={params.lang} />
       <div className="space-y-2 pt-16 md:space-x-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-13">
-          {isEng ? "About me" : "Обо мне"}
+          <AnimatedWrapper>{isEng ? "About me" : "Обо мне"}</AnimatedWrapper>
         </h1>
       </div>
       <div className="prose max-w-none prose-lg pt-6 pb-7 dark:prose-invert xl:col-span-2">

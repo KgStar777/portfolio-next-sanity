@@ -2,6 +2,7 @@ import { client } from "@/app/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import type { ProjectData } from "../models/ProjectData";
+import { AnimatedWrapper } from "./AnimatedWrapper";
 
 async function getProjects() {
   const query = `*[_type == "gallery"] {
@@ -35,7 +36,7 @@ export default async function ProjectList(props: { lang: string }) {
       {/* <div className="space-y-2 pt-6 pb-8 md:space-y-5"> */}
       <div className="space-y-2 pt-10 md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          {props.lang === "ru" ? "Проекты" : "Projects"}
+          <AnimatedWrapper>{props.lang === "ru" ? "Проекты" : "Projects"}</AnimatedWrapper>
         </h1>
       </div>
 

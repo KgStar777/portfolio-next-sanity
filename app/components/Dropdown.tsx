@@ -44,7 +44,7 @@ export default function Dropdown<T>(props: IDropDownProps<DropDownValue>) {
         {
           isOpen && (
             <div
-              className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-black dark:border-teal-900 border border-gray-100"
+              className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-black dark:border-teal-900 border border-gray-100"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
