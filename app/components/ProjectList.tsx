@@ -33,7 +33,7 @@ export default async function ProjectList(props: { lang: string }) {
   }
   
   return (
-    <section className="divide-gray-200 dark:divide-gray-700">
+    <section id="projects" className="divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pt-10 md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           <AnimatedWrapper>{props.lang === "ru" ? "Проекты" : "Projects"}</AnimatedWrapper>

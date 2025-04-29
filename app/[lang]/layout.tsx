@@ -1,9 +1,10 @@
-import type { LanguageType } from "@/models/LanguageType";
 import Navbar from "@/components/Navbar";
+import type { LanguageType } from "@/models/LanguageType";
 import { LanguageContextProvider } from "@/context/LanguageContext";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import { FloatingContact } from "@/components/FloatingContact";
 import { AnimatedWrapper } from "@/components/AnimatedWrapper";
+import Footer from "@/components/Footer";
 
 export default function Layout({
   children,
@@ -15,13 +16,16 @@ export default function Layout({
   return (
     <LanguageContextProvider defaultLanguage={params.lang?.toUpperCase() as LanguageType}>
       <ThemeContextProvider>
-        <FloatingContact />
-        <AnimatedWrapper>
-        <Navbar />
-        </AnimatedWrapper>
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {children}
-        </main>
+        <div className="min-h-screen flex flex-col">
+          <FloatingContact />
+          <AnimatedWrapper>
+          <Navbar />
+          </AnimatedWrapper>
+          <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
+            {children}
+          </main>
+          <Footer className="space-y-2 xl:gap-x-8 xl:space-y-0" lang={params.lang} />
+        </div>
       </ThemeContextProvider>
     </LanguageContextProvider>
   );

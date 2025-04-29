@@ -1,12 +1,13 @@
 "use client";
 
-import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useParams } from 'next/navigation';
 import { useCallback } from "react";
+import { Disclosure } from "@headlessui/react";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { links } from "@/site-config";
 import Themebutton from "./Themebutton";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -27,25 +28,12 @@ const getIcon = (open: boolean) => (
   </svg>
 );
 
-const links = [
-  {
-    titleEng: "Home",
-    titleRu: "Главная",
-    to: "",
-  },
-  // {
-  //   titleEng: "Projects",
-  //   titleRu: "Проекты",
-  //   to: "/projects",
-  // },
-];
-
 export default function Navbar() {
   const { language, languageLC } = useLanguage();
   const { lang } = useParams();
   let pathname = usePathname() || `${languageLC}`;
 
-  const getLinkPath = useCallback((path: string) => {
+  const getLinkPath = useCallback((path: string): string => {
     return `/${languageLC}${path}`;
   }, [languageLC]);
 
@@ -113,12 +101,6 @@ export default function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1 flex-col items-center">
-              {/* <Link
-                href="/"
-                prefetch
-              >
-                Home
-              </Link> */}
               {links.map((link, idx) => (
                 <Link
                   key={idx}

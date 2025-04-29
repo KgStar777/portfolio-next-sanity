@@ -4,13 +4,19 @@ import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 
-const pageVariants = {
+const pageVariantsWithMovement = {
   hidden: { opacity: 0, y: -12 },
   visible: { opacity: 1, y: 0 },
 };
 
-export function AnimatedWrapper({ children, className = "" }: {
+const pageVariantsWithoutMovement = {
+  hidden: { opacity: 0, y: 0 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export function AnimatedWrapper({ children, className = "", withMovement = true }: {
   children: React.ReactNode;
+  withMovement?: boolean;
   className?: string;
 }) {
   const { lang } = useParams();
@@ -25,7 +31,7 @@ export function AnimatedWrapper({ children, className = "" }: {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={pageVariants}
+      variants={withMovement ? pageVariantsWithMovement : pageVariantsWithoutMovement}
       transition={{ duration: 0.4, ease: "easeInOut", delay: .2 }}
       className={className}
     >

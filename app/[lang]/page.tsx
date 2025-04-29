@@ -43,7 +43,7 @@ export default async function Home({ params }: {
             className="h-48 w-48 rounded-full object-cover object-top"
           />
           <h3 className="pt-4 text-2xl font-bold leading-8 tracking-tight">
-              <AnimatedWrapper>{isEng ? "Developer" : "Разработчик"}</AnimatedWrapper>
+              <AnimatedWrapper withMovement={false}>{isEng ? "Developer" : "Разработчик"}</AnimatedWrapper>
           </h3>
 
           <div className="flex space-x-5 pt-4">
@@ -90,7 +90,7 @@ export default async function Home({ params }: {
       <ProjectList lang={params.lang} />
       <div className="space-y-2 pt-16 md:space-x-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-13">
-          <AnimatedWrapper>{isEng ? "About me" : "Обо мне"}</AnimatedWrapper>
+          <AnimatedWrapper withMovement={false}>{isEng ? "About me" : "Обо мне"}</AnimatedWrapper>
         </h1>
       </div>
       <div className="prose max-w-none prose-lg pt-6 pb-7 dark:prose-invert xl:col-span-2">

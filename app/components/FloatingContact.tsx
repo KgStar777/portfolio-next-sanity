@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,12 +19,12 @@ export const FloatingContact: React.FC = () => {
   const divRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const { lang } = useParams();
 
-  const handleClose = (e: React.MouseEvent) => {
+  const handleClose = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setDisableHover(true);
     setIsClosing(true);
     setIsOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     const warn = console.warn;

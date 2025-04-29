@@ -14,11 +14,11 @@ export default function LanguageSwitcher() {
     const isLangSegment = availableLanguages.some(lang => lang === segments[1].toUpperCase());
     const newPath = isLangSegment
       ? `/${normalizedValue}/${segments.slice(2).join('/')}`
-      : `/${normalizedValue}`
+      : `/${normalizedValue}`;
     if (isLangSegment) {
       router.push(newPath);
     } else {
-      router.push("/")
+      router.push("/");
     }
   }
 
