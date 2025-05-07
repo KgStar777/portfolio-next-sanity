@@ -19,9 +19,9 @@ export default function Layout({
         <div className="min-h-screen flex flex-col">
           <FloatingContact />
           <AnimatedWrapper>
-          <Navbar />
+            <Navbar />
           </AnimatedWrapper>
-          <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
+          <main className="flex flex-col max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow container">
             {children}
           </main>
           <Footer className="space-y-2 xl:gap-x-8 xl:space-y-0" lang={params.lang} />

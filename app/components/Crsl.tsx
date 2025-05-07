@@ -30,7 +30,7 @@ export const Crsl = ({
 }: {
   images: string[],
 }) => { 
-  return ( 
+  return (
     <Carousel
       responsive={responsive}
       infinite={true}
@@ -38,12 +38,13 @@ export const Crsl = ({
       autoPlaySpeed={3000}
       keyBoardControl={true}
       transitionDuration={500}
+      removeArrowOnDeviceType={["tablet", "mobile"]}
     >
       {
         images?.length > 0 && images.map((item, idx) => (
             <article
               key={idx}
-              className="overflow-hidden dark:border-zinc-600 rounded-lg border border-gray-100 bg-white shadow-lg dark:bg-black dark:border-teal-900 mx-1"
+              className="w-full h-full flex items-center justify-center"
             >
               <div className="h-80 w-full relative" key={idx}>
                 <Image

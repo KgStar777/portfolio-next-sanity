@@ -1,4 +1,4 @@
-import { Suspense, Fragment } from "react";
+import { Suspense } from "react";
 
 import { BackButton } from "@/app/components/BackButton";
 import { client } from "@/app/lib/sanity";
@@ -31,19 +31,21 @@ export default async function Gallery(
 }) {
   const data: ProjectDataWithGallery[] = await asyncFunc(projectId);
 
-  return !data?.[0]
-  ? (
-    <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
-      <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
-        <BackButton />
-        <h3 className="self-center text-4xl font-large leading-8 tracking-tight mt-10 font-semibold">
-          {lang === "ru" ? "Такого проекта нет" : "There is no such project"}
-        </h3>
+  if (!data?.[0]) {
+    return (
+      <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
+        <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
+          <BackButton />
+          <h3 className="self-center text-4xl font-large leading-8 tracking-tight mt-10 font-semibold">
+            {lang === "ru" ? "Такого проекта нет" : "There is no such project"}
+          </h3>
+        </div>
       </div>
-    </div>
-  )
-  : (
-    <Fragment>
+    )
+  }
+
+  return (
+    <section className="w-full max-w-full flex flex-col overflow-hidden">
       <div className="items-center space-y-2 xl:grid xl:grid-cols-1 xl:gap-x-8 xl:space-y-0 xl:items-start">
         <div className="flex flex-col pt-4 pb-8 justify-between gap-4">
           <BackButton />
@@ -53,36 +55,35 @@ export default async function Gallery(
         </div>
       </div>
 
-      <Suspense fallback={lang === "ru"
-        ? <>Загрузка...</>
-        : <>Loading...</>}>
-        <div className="h-84 rounded-md overflow-hidden bg-cover bg-center">
+      <Suspense fallback={
+        lang === "ru"
+          ? <>Загрузка...</>
+          : <>Loading...</>
+        }>
           <Crsl images={data?.[0].imageUrl} />
-        </div>
       </Suspense>
 
-      <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
+      <div className="w-full max-w-full overflow-hidden prose prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
         <p>{lang === "ru" ? data?.[0].overviewRu : data?.[0].overview}</p>
-        <div>
+        <div className="flex flex-col truncate overflow-hidden">
           {
             data?.[0]?.link !== null && !/^uv/.test(data?.[0]?.link) && (
-              <Fragment>
+              <div className="truncate flex flex-wrap items-center gap-1">
                 <span>{lang === "ru" ? "ссылка на сайт: " : "link to site: "}</span>
-                <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
-              </Fragment>
+                <a className="truncate px-2 py-1 hover:bg-teal-500" href={data[0].link}>{data[0].link}</a>
+              </div>
             )
           }
           {
             data?.[0]?.github !== null && (
-              <Fragment>
+              <div className="truncate flex flex-wrap items-center gap-1">
                 <span>{`${lang === "ru" ? "ссылка на" : "link to"} github: `}</span>
-                <a className="pb-1 pt-1 ps-2 pe-2 hover:bg-teal-500" href={data[0].github}>{data[0].github}</a>
-              </Fragment>
+                <a className="truncate ps-0 py-1 hover:bg-teal-500" href={data[0].github}>{data[0].github}</a>
+              </div>
             )
-          }
-          
+          } 
         </div>
       </div>
-    </Fragment>
+    </section>
   )
 }
