@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import YandexMetrika from "@/components/YandexMetrika";
+import dynamic from "next/dynamic";
+
+// Load YandexMetrika dynamically with SSR disabled so client-only hooks
+// (useSearchParams/usePathname) don't run during prerender.
+const YandexMetrika = dynamic(() => import("@/components/YandexMetrika"), {
+  ssr: false,
+});
 
 import "./globals.css";
 
