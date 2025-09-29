@@ -10,6 +10,7 @@ async function asyncFunc(projectId: string) {
   const query = `*[_type == "gallery" && name == "${projectId}"] {
     title,
     overview,
+    overviewRu,
     link,
     github,
     _id,
@@ -64,7 +65,7 @@ export default async function Gallery(
       </Suspense>
 
       <div className="w-full max-w-full overflow-hidden prose prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
-        <p>{lang === "ru" ? data?.[0].overviewRu : data?.[0].overview}</p>
+        <p>{lang === "ru" ? data?.[0]?.overviewRu : data?.[0]?.overview}</p>
         <div className="flex flex-col truncate overflow-hidden">
           {
             data?.[0]?.link !== null && !/^uv/.test(data?.[0]?.link) && (

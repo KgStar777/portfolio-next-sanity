@@ -62,11 +62,13 @@ export default async function ProjectList(props: { lang: string }) {
             </div>
 
             <div className="p-4 sm:p-6">
-              <a href={project.link} target="_blank">
+              {/* <a href={project.link} target="_blank"> */}
+              <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                   {props.lang === "ru" ? project.titleRu : project.title}
                 </h3>
-              </a>
+              </div>
+              {/* </a> */}
 
               <p className=" line-clamp-3 mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 {props.lang === "ru" ? project.overviewRu : project.overview}
